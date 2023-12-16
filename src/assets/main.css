@@ -1,3 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: rgb(243, 255, 216);
+    font-family: 'Inter';
+}
+
+.wrapper {
+    @apply w-full md:w-4/5 bg-white mx-auto rounded-[20px] shadow-lg md:my-14 h-screen padding-lg padding;
+}
+.padding {
+    @apply py-6 px-4;
+}
+.padding-lg {
+    @apply md:py-11 md:px-11;
+}
+
+.text-6 {
+    @apply text-[#666666];
+}
