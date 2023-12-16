@@ -1,7 +1,3 @@
-<script setup>
-import MyHello from './components/MyHello.vue'
-</script>
+<script setup></script>
 
-<template>
-    <MyHello />
-</template>
+<template></template>
