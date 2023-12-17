@@ -2,6 +2,7 @@
 import Header from './components/Header/Header.vue'
 import Wrapper from './components/Wrapper.vue'
 import SneakersList from './components/SneakersList/SneakersList.vue'
+import Cart from './components/Cart/Cart.vue'
 </script>
 
 <template>
@@ -9,4 +10,5 @@ import SneakersList from './components/SneakersList/SneakersList.vue'
         <Header />
         <SneakersList />
     </Wrapper>
+    <Cart />
 </template>
