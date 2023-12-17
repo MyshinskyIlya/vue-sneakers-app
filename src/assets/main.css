@@ -8,6 +8,15 @@ body {
     font-family: 'Inter';
 }
 
+* {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
 .wrapper {
     @apply w-full md:w-4/5 bg-white mx-auto rounded-[20px] shadow-lg md:my-14 h-screen padding-lg padding;
 }
@@ -20,4 +29,12 @@ body {
 
 .text-6 {
     @apply text-[#666666];
+}
+
+.top-bg {
+    background: url('/public/top-background.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    object-fit: fill;
+    border-radius: 20px;
 }

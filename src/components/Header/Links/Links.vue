@@ -5,7 +5,7 @@
         <ul class="flex gap-6 text-6 text-sm font-light">
             <li class="flex items-center gap-2">
                 <img src="/cart.svg" alt="" />
-                <span class="font-semibold">1205 руб.</span>
+                <span class="font-semibold whitespace-nowrap">12205 руб.</span>
             </li>
             <li class="flex items-center gap-2">
                 <img src="/heart.svg" alt="" />
