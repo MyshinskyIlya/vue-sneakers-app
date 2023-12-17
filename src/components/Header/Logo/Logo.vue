@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <div class="flex gap-4 items-center">
+    <div class="flex gap-4 items-center cursor-pointer">
         <img
             src="/logo.png"
             alt="Logo"

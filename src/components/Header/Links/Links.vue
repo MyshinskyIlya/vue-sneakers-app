@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <nav class="hidden md:block">
+    <nav class="hidden md:block cursor-pointer">
         <ul class="flex gap-6 text-6 text-sm font-light">
             <li class="flex items-center gap-2">
                 <img src="/cart.svg" alt="" />
@@ -17,7 +17,7 @@
             </li>
         </ul>
     </nav>
-    <nav class="md:hidden">
+    <nav class="md:hidden cursor-pointer">
         <ul class="flex gap-6 text-6 text-sm font-light">
             <li class="flex items-center gap-2">
                 <img src="/cart.svg" alt="" />

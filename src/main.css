@@ -18,7 +18,7 @@ body {
 }
 
 .wrapper {
-    @apply w-full md:w-4/5 bg-white mx-auto rounded-[20px] shadow-lg md:my-14 h-screen padding-lg padding;
+    @apply w-full md:w-4/5 bg-white mx-auto rounded-[20px] shadow-xl md:my-14 h-screen padding-lg padding;
 }
 .padding {
     @apply py-6 px-4;
