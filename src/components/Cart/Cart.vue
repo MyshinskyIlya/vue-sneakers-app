@@ -1,18 +1,28 @@
 <script setup>
 import CartSneakersList from './CartSneakersList/CartSneakersList.vue'
+
+const { setCartHandler } = defineProps({
+    setCartHandler: Function
+})
 </script>
 
 <template>
-    <div class="fixed top-0 left-0 w-full h-screen bg-black opacity-50"></div>
-    <div class="fixed top-0 right-0 w-1/3 h-full bg-white overflow-y-auto flex flex-col">
+    <div
+        @click="setCartHandler"
+        class="fixed top-0 left-0 w-full h-screen bg-black opacity-50"
+    ></div>
+    <div
+        class="fixed top-0 right-0 w-1/3 h-full bg-white overflow-y-auto flex flex-col z-10"
+    >
         <div class="flex items-center ml-10">
             <svg
+                @click="setCartHandler"
                 width="12"
                 height="20"
                 viewBox="0 0 7 12"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                class="cursor-pointer rotate-180 hover:rotate-0 transition-all ease-in-out duration-450"
+                class="cursor-pointer rotate-180 hover:rotate-0 transition-all ease-in-out duration-500"
             >
                 <path
                     d="M1 0.999999L6 6L1 11"

@@ -1,9 +1,13 @@
-<script></script>
+<script setup>
+const { setCartHandler } = defineProps({
+    setCartHandler: Function
+})
+</script>
 
 <template>
     <nav class="hidden lg:block cursor-pointer">
         <ul class="flex gap-6 text-6 text-sm font-light">
-            <li class="flex items-center gap-2 hover:text-black">
+            <li @click="setCartHandler" class="flex items-center gap-2 hover:text-black">
                 <img src="/cart.svg" alt="" />
                 <span class="font-semibold whitespace-nowrap">12205 руб.</span>
             </li>
