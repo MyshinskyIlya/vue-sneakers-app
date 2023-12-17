@@ -5,7 +5,9 @@ import HeaderImage from './HeaderImage/HeaderImage.vue'
 </script>
 
 <template>
-    <header class="flex justify-between items-center h-[41px]">
+    <header
+        class="flex justify-between items-center h-[41px] px-8 py-12 border-b border-slate-100"
+    >
         <Logo />
         <Links />
     </header>
