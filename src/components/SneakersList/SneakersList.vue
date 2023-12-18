@@ -21,8 +21,7 @@ const onClickAdd = () => {
 </script>
 
 <template>
-    <section class="mt-2 md:mt-10 py-4">
-        <h2 class="text-4xl font-bold">Все Кросcовки</h2>
+    <section class="md:mt-8">
         <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 space-y-4 md:space-y-0">
             <SneakersCard
                 :imageURL="images[0]"
