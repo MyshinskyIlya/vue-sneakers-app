@@ -20,7 +20,7 @@ const { imageURL, title, price } = defineProps({
                 alt="Like Icon"
                 width="42"
                 height="42"
-                class="absolute top-6 left-4"
+                class="absolute top-6 left-4 cursor-pointer"
                 @click="onClickFavorite"
             />
             <img :src="imageURL" alt="Sneaker Image" class="object-contain" />
@@ -36,6 +36,7 @@ const { imageURL, title, price } = defineProps({
                     @click="onClickAdd"
                     :src="!isAdded ? '/plus.svg' : '/checked.svg'"
                     alt="Plus Icon"
+                    class="cursor-pointer"
                 />
             </div>
         </div>

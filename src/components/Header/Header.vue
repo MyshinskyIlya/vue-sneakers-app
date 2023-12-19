@@ -10,7 +10,7 @@ const { setCartHandler } = defineProps({
 
 <template>
     <header
-        class="flex justify-between items-center h-[41px] px-8 py-12 border-b border-slate-100"
+        class="flex justify-between items-center h-[41px] px-8 py-10 border-b border-slate-100"
     >
         <Logo />
         <Links :setCartHandler="setCartHandler" />

@@ -1,4 +1,4 @@
-;[
+export default [
     {
         id: 1,
         title: 'Мужские Кроссовки Nike Blazer Mid Suede',
