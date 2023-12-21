@@ -1,13 +1,27 @@
 <script setup>
-const { imageURL, title, price } = defineProps({
-    imageURL: String,
+import { onMounted, ref, watch } from 'vue'
+
+const { imageUrl, title, price, isFavorite, item, addtoCart } = defineProps({
+    imageUrl: String,
     title: String,
     price: String,
     isFavorite: Boolean,
     isAdded: Boolean,
-    onClickAdd: Function,
-    onClickFavorite: Function
+    onClickFavorite: Function,
+    item: Object,
+    addtoCart: Function
 })
+const timer = ref(false)
+function addTimer() {
+    timer.value = true
+    item.count++
+
+    setTimeout(() => {
+        timer.value = false
+    }, 300)
+}
+
+console.log(timer.value)
 </script>
 
 <template>
@@ -21,9 +35,8 @@ const { imageURL, title, price } = defineProps({
                 width="42"
                 height="42"
                 class="absolute top-6 left-4 cursor-pointer"
-                @click="onClickFavorite"
             />
-            <img :src="imageURL" alt="Sneaker Image" class="object-contain" />
+            <img :src="imageUrl" alt="Sneaker Image" class="object-contain" />
         </div>
         <p class="capitalize trxt-md font-semibold text-lg w-full mt-2">{{ title }}</p>
         <div class="flex items-center justify-between w-full mt-2">
@@ -31,12 +44,24 @@ const { imageURL, title, price } = defineProps({
                 <p class="text-slate-300">ЦЕНА:</p>
                 <b class="whitespace-nowrap font-bold">{{ price }}</b>
             </div>
-            <div>
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-sm text-lime-500">
+                    {{ item.count > 0 ? item.count : '' }}
+                </span>
                 <img
-                    @click="onClickAdd"
-                    :src="!isAdded ? '/plus.svg' : '/checked.svg'"
+                    @click="
+                        () => {
+                            addtoCart(item)
+                            addTimer()
+                        }
+                    "
+                    :src="!timer ? '/plus.svg' : '/checked.svg'"
                     alt="Plus Icon"
-                    class="cursor-pointer"
+                    :class="
+                        !timer
+                            ? 'cursor-pointer '
+                            : 'scale-150 rotate-6 duration-200 transition-all ease-in-out'
+                    "
                 />
             </div>
         </div>

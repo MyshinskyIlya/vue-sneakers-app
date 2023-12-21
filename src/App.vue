@@ -9,6 +9,8 @@ import SearchBar from './components/SearchBar/SearchBar.vue'
 import Sneakers from './assets/Sneakers'
 
 const items = ref([])
+const cardItems = ref([])
+const totalPrice = ref(0)
 
 const searchQuery = ref('')
 
@@ -20,10 +22,19 @@ onMounted(async () => {
     try {
         const { data } = await axios.get('https://604781a0efa572c1.mokky.dev/items')
         items.value = data
+
+        items.value = items.value.map((obj) => ({
+            ...obj,
+            isFavorite: false,
+            isAdded: false,
+            count: 0
+        }))
     } catch (error) {
         console.log('API loading Error: Downloading from the local state')
         items.value = Sneakers
     }
+
+    items.value[0].isFavourite = true
 })
 
 watch(searchQuery, async () => {
@@ -40,6 +51,10 @@ watch(searchQuery, async () => {
     }
 })
 
+watch(cardItems, () => {
+    console.log(cardItems.value)
+})
+
 const isCartOpen = ref(false)
 const isInputInFocus = ref(false)
 
@@ -50,10 +65,17 @@ const setCartHandler = () => {
 const setFocus = () => {
     isInputInFocus.value = !isInputInFocus.value
 }
+
+const addtoCart = async (item) => {
+    item.isAdded = !item.isAdded
+
+    totalPrice.value += item.price
+    cardItems.value.push(item)
+}
 </script>
 <template>
     <Wrapper>
-        <Header :setCartHandler="setCartHandler" />
+        <Header :setCartHandler="setCartHandler" :totalPrice="totalPrice" />
         <div
             class="md:mt-12 flex md:flex-row flex-col md:justify-between md:items-center"
         >
@@ -64,7 +86,12 @@ const setFocus = () => {
                 :onChangeInput="onChangeInput"
             />
         </div>
-        <SneakersList :items="items" />
+        <SneakersList :items="items" :addtoCart="addtoCart" />
     </Wrapper>
-    <Cart v-if="isCartOpen" :setCartHandler="setCartHandler" />
+    <Cart
+        v-if="isCartOpen"
+        :setCartHandler="setCartHandler"
+        :cardItems="cardItems"
+        :totalPrice="totalPrice"
+    />
 </template>

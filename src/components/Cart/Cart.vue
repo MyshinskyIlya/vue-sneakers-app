@@ -1,9 +1,14 @@
 <script setup>
+import { onMounted } from 'vue'
 import CartSneakersList from './CartSneakersList/CartSneakersList.vue'
 
-const { setCartHandler } = defineProps({
-    setCartHandler: Function
+const { setCartHandler, cardItems, totalPrice } = defineProps({
+    setCartHandler: Function,
+    cardItems: Array,
+    totalPrice: Number
 })
+
+console.log(cardItems)
 </script>
 
 <template>
@@ -35,15 +40,15 @@ const { setCartHandler } = defineProps({
 
             <h2 class="text-2xl font-bold p-8">Корзина</h2>
         </div>
-        <CartSneakersList />
+        <CartSneakersList :cardItems="cardItems" />
         <div class="flex flex-col gap-4 border-t font-medium border-slate-200 p-10">
             <div class="flex justify-between">
                 <p class="text-6">Итого:</p>
-                <p class="font-bold">21000 RUB</p>
+                <p class="font-bold">{{ totalPrice }} RUB</p>
             </div>
             <div class="flex justify-between mb-1">
                 <p class="text-6">Налог 5%:</p>
-                <p class="font-bold">1074 RUB</p>
+                <p class="font-bold">{{ ((totalPrice * 5) / 100).toFixed(0) }} RUB</p>
             </div>
             <button
                 class="bg-lime-400 hover:bg-lime-500 active:bg-lime-600 disabled:bg-slate-300 disabled:cursor-auto transition-all duration-400 rounded-2xl px-4 py-3 font-bold text-white cursor-pointer w-full mt-auto"

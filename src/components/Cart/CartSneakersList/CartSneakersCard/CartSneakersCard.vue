@@ -1,11 +1,12 @@
 <script setup>
-const { imageURL, title, price } = defineProps({
-    imageURL: String,
+import { onMounted } from 'vue'
+
+const { imageUrl, title, price } = defineProps({
+    imageUrl: String,
     title: String,
     price: String,
     isFavorite: Boolean,
     isAdded: Boolean,
-    onClickAdd: Function,
     onClickFavorite: Function
 })
 </script>
@@ -15,7 +16,7 @@ const { imageURL, title, price } = defineProps({
         class="relative grid grid-cols-3 gap-6 items-center shadow-md rounded-2xl py-6 px-6 border bg-white border-slate-200 hover:shadow-xl hover:scale-105 transition-all ease-in-out cursor-pointer"
     >
         <div class="flex justify-end items-center col-span-1">
-            <img :src="imageURL" alt="Sneaker Image" class="object-contain" width="96" />
+            <img :src="imageUrl" alt="Sneaker Image" class="object-contain" width="96" />
         </div>
         <div class="col-span-2">
             <p class="capitalize text-lg w-full">{{ title }}</p>

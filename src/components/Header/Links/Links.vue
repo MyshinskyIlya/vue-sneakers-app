@@ -1,6 +1,7 @@
 <script setup>
-const { setCartHandler } = defineProps({
-    setCartHandler: Function
+const { setCartHandler, totalPrice } = defineProps({
+    setCartHandler: Function,
+    totalPrice: Number
 })
 </script>
 
@@ -9,7 +10,14 @@ const { setCartHandler } = defineProps({
         <ul class="flex gap-6 text-6 text-sm font-light">
             <li @click="setCartHandler" class="flex items-center gap-2 hover:text-black">
                 <img src="/cart.svg" alt="" />
-                <span class="font-semibold whitespace-nowrap">12205 руб.</span>
+                <span
+                    :class="
+                        totalPrice > 0
+                            ? 'font-semibold whitespace-nowrap text-lime-500'
+                            : 'whitespace-nowrap'
+                    "
+                    >{{ totalPrice > 0 ? totalPrice + ' RUB' : 'Корзина' }}</span
+                >
             </li>
             <li class="flex items-center gap-2 hover:text-black">
                 <img src="/heart.svg" alt="" />
