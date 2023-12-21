@@ -1,14 +1,12 @@
 <script setup>
-import { onMounted } from 'vue'
 import CartSneakersList from './CartSneakersList/CartSneakersList.vue'
 
-const { setCartHandler, cardItems, totalPrice } = defineProps({
+const { setCartHandler, cartItems, totalPrice, deleteCartItem } = defineProps({
     setCartHandler: Function,
-    cardItems: Array,
-    totalPrice: Number
+    cartItems: Array,
+    totalPrice: Number,
+    deleteCartItem: Function
 })
-
-console.log(cardItems)
 </script>
 
 <template>
@@ -17,7 +15,7 @@ console.log(cardItems)
         class="fixed top-0 left-0 w-full h-screen bg-black opacity-50"
     ></div>
     <div
-        class="fixed top-0 right-0 w-1/3 h-full bg-white overflow-y-auto flex flex-col z-10"
+        class="fixed top-0 right-0 md:w-1/3 w-full h-full bg-white overflow-y-auto flex flex-col z-10"
     >
         <div class="flex items-center ml-10 border-b border-slate-200">
             <svg
@@ -40,7 +38,7 @@ console.log(cardItems)
 
             <h2 class="text-2xl font-bold p-8">Корзина</h2>
         </div>
-        <CartSneakersList :cardItems="cardItems" />
+        <CartSneakersList :cartItems="cartItems" :deleteCartItem="deleteCartItem" />
         <div class="flex flex-col gap-4 border-t font-medium border-slate-200 p-10">
             <div class="flex justify-between">
                 <p class="text-6">Итого:</p>

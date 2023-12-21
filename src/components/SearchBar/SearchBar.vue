@@ -18,10 +18,6 @@ const { isInputInFocus, setFocus, searchQuery } = defineProps({
             @focusout="setFocus"
             @input="(e) => onChangeInput(e.target.value)"
         />
-        <img
-            src="/search.svg"
-            alt="Close Icon"
-            class="absolute top-[16px] left-4 z-20 w-4"
-        />
+        <img src="/search.svg" alt="Close Icon" class="absolute top-[16px] left-4 w-4" />
     </div>
 </template>

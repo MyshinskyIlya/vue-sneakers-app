@@ -31,7 +31,7 @@ const { setCartHandler, totalPrice } = defineProps({
     </nav>
     <nav class="lg:hidden cursor-pointer">
         <ul class="flex gap-6 text-6 text-sm font-light">
-            <li class="flex items-center gap-2">
+            <li class="flex items-center gap-2" @click="setCartHandler">
                 <img src="/cart.svg" alt="" />
             </li>
             <li class="flex items-center gap-2">

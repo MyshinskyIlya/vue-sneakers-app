@@ -14,7 +14,6 @@ const { imageUrl, title, price, isFavorite, item, addtoCart } = defineProps({
 const timer = ref(false)
 function addTimer() {
     timer.value = true
-    item.count++
 
     setTimeout(() => {
         timer.value = false
@@ -39,12 +38,12 @@ console.log(timer.value)
             <img :src="imageUrl" alt="Sneaker Image" class="object-contain" />
         </div>
         <p class="capitalize trxt-md font-semibold text-lg w-full mt-2">{{ title }}</p>
-        <div class="flex items-center justify-between w-full mt-2">
+        <div class="flex items-center justify-between w-full mt-2 gap-2">
             <div>
                 <p class="text-slate-300">ЦЕНА:</p>
                 <b class="whitespace-nowrap font-bold">{{ price }}</b>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1 self-end mt-5">
                 <span class="font-bold text-sm text-lime-500">
                     {{ item.count > 0 ? item.count : '' }}
                 </span>

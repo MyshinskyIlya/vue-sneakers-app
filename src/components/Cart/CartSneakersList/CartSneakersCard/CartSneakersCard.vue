@@ -1,13 +1,14 @@
 <script setup>
-import { onMounted } from 'vue'
-
-const { imageUrl, title, price } = defineProps({
+const { imageUrl, title, price, deleteCartItem, id, count } = defineProps({
+    item: Object,
     imageUrl: String,
     title: String,
     price: String,
     isFavorite: Boolean,
     isAdded: Boolean,
-    onClickFavorite: Function
+    onClickFavorite: Function,
+    deleteCartItem: Function,
+    count: Number
 })
 </script>
 
@@ -20,12 +21,24 @@ const { imageUrl, title, price } = defineProps({
         </div>
         <div class="col-span-2">
             <p class="capitalize text-lg w-full">{{ title }}</p>
-            <b class="whitespace-nowrap font-bold">{{ price }}</b>
+            <b class="whitespace-nowrap font-bold">{{ price * count + ' RUB' }}</b>
         </div>
-        <img
-            src="/close.svg"
-            alt="Cros Icon"
-            class="absolute bottom-4 right-4 opacity-60 hover:opacity-100 cursor-pointer"
-        />
+        <div
+            class="absolute bottom-4 right-4 flex items-center gap-1 font-bold text-lime-500"
+        >
+            <div class="text-sm">
+                {{ item.count }}
+            </div>
+            <img
+                src="/close.svg"
+                alt="Cros Icon"
+                class="opacity-60 hover:opacity-100 cursor-pointer"
+                @click="
+                    () => {
+                        deleteCartItem(item)
+                    }
+                "
+            />
+        </div>
     </div>
 </template>

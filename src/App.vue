@@ -9,7 +9,7 @@ import SearchBar from './components/SearchBar/SearchBar.vue'
 import Sneakers from './assets/Sneakers'
 
 const items = ref([])
-const cardItems = ref([])
+const cartItems = ref([])
 const totalPrice = ref(0)
 
 const searchQuery = ref('')
@@ -51,8 +51,8 @@ watch(searchQuery, async () => {
     }
 })
 
-watch(cardItems, () => {
-    console.log(cardItems.value)
+watch(cartItems, () => {
+    console.log(cartItems.value)
 })
 
 const isCartOpen = ref(false)
@@ -68,9 +68,21 @@ const setFocus = () => {
 
 const addtoCart = async (item) => {
     item.isAdded = !item.isAdded
-
+    item.count++
     totalPrice.value += item.price
-    cardItems.value.push(item)
+
+    if (!cartItems.value.includes(item)) {
+        cartItems.value.push(item)
+    }
+}
+
+const deleteCartItem = async (item) => {
+    if (item.count == 1) {
+        cartItems.value = cartItems.value.filter((i) => i.id != item.id)
+    }
+    item.count--
+
+    totalPrice.value -= item.price
 }
 </script>
 <template>
@@ -91,7 +103,8 @@ const addtoCart = async (item) => {
     <Cart
         v-if="isCartOpen"
         :setCartHandler="setCartHandler"
-        :cardItems="cardItems"
+        :cartItems="cartItems"
         :totalPrice="totalPrice"
+        :deleteCartItem="deleteCartItem"
     />
 </template>
