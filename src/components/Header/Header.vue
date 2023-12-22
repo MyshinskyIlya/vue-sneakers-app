@@ -3,9 +3,10 @@ import Logo from './Logo/Logo.vue'
 import Links from './Links/Links.vue'
 import HeaderImage from './HeaderImage/HeaderImage.vue'
 
-const { setCartHandler, totalPrice } = defineProps({
+const { setCartHandler, totalPrice, setFavHandler } = defineProps({
     setCartHandler: Function,
-    totalPrice: Number
+    totalPrice: Number,
+    setFavHandler: Function
 })
 </script>
 
@@ -14,9 +15,12 @@ const { setCartHandler, totalPrice } = defineProps({
         class="flex justify-between items-center h-[41px] px-8 py-10 border-b border-slate-100"
     >
         <Logo />
-        <Links :setCartHandler="setCartHandler" :totalPrice="totalPrice" />
+        <Links
+            :setCartHandler="setCartHandler"
+            :totalPrice="totalPrice"
+            :setFavHandler="setFavHandler"
+        />
     </header>
-    <HeaderImage />
 </template>
 
 <style></style>

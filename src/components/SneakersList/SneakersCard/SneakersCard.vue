@@ -1,16 +1,18 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue'
+import { ref } from 'vue'
 
-const { imageUrl, title, price, isFavorite, item, addtoCart } = defineProps({
-    imageUrl: String,
-    title: String,
-    price: String,
-    isFavorite: Boolean,
-    isAdded: Boolean,
-    onClickFavorite: Function,
-    item: Object,
-    addtoCart: Function
-})
+const { imageUrl, title, price, isFavorite, item, addtoCart, addToFavorite } =
+    defineProps({
+        imageUrl: String,
+        title: String,
+        price: Number,
+        isFavorite: Boolean,
+        isAdded: Boolean,
+        onClickFavorite: Function,
+        item: Object,
+        addtoCart: Function,
+        addToFavorite: Function
+    })
 const timer = ref(false)
 function addTimer() {
     timer.value = true
@@ -19,8 +21,6 @@ function addTimer() {
         timer.value = false
     }, 300)
 }
-
-console.log(timer.value)
 </script>
 
 <template>
@@ -34,6 +34,7 @@ console.log(timer.value)
                 width="42"
                 height="42"
                 class="absolute top-6 left-4 cursor-pointer"
+                @click="() => addToFavorite(item)"
             />
             <img :src="imageUrl" alt="Sneaker Image" class="object-contain" />
         </div>
@@ -41,7 +42,7 @@ console.log(timer.value)
         <div class="flex items-center justify-between w-full mt-2 gap-2">
             <div>
                 <p class="text-slate-300">ЦЕНА:</p>
-                <b class="whitespace-nowrap font-bold">{{ price }}</b>
+                <b class="whitespace-nowrap font-bold">{{ price + ' RUB' }}</b>
             </div>
             <div class="flex items-center gap-1 self-end mt-5">
                 <span class="font-bold text-sm text-lime-500">

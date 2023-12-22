@@ -1,7 +1,8 @@
 <script setup>
-const { setCartHandler, totalPrice } = defineProps({
+const { setCartHandler, totalPrice, setFavHandler } = defineProps({
     setCartHandler: Function,
-    totalPrice: Number
+    totalPrice: Number,
+    setFavHandler: Function
 })
 </script>
 
@@ -19,7 +20,7 @@ const { setCartHandler, totalPrice } = defineProps({
                     >{{ totalPrice > 0 ? totalPrice + ' RUB' : 'Корзина' }}</span
                 >
             </li>
-            <li class="flex items-center gap-2 hover:text-black">
+            <li class="flex items-center gap-2 hover:text-black" @click="setFavHandler">
                 <img src="/heart.svg" alt="" />
                 <span>Закладки</span>
             </li>
@@ -34,7 +35,7 @@ const { setCartHandler, totalPrice } = defineProps({
             <li class="flex items-center gap-2" @click="setCartHandler">
                 <img src="/cart.svg" alt="" />
             </li>
-            <li class="flex items-center gap-2">
+            <li class="flex items-center gap-2" @click="setFavHandler">
                 <img src="/heart.svg" alt="" />
             </li>
             <li class="flex items-center gap-2">

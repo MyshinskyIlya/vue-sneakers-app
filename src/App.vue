@@ -5,18 +5,22 @@ import Header from './components/Header/Header.vue'
 import Wrapper from './components/Wrapper.vue'
 import SneakersList from './components/SneakersList/SneakersList.vue'
 import Cart from './components/Cart/Cart.vue'
+import Favorites from './components/Favorites/Favorites.vue'
 import SearchBar from './components/SearchBar/SearchBar.vue'
 import Sneakers from './assets/Sneakers'
+import HeaderImage from './components/Header/HeaderImage/HeaderImage.vue'
 
-const items = ref([])
-const cartItems = ref([])
 const totalPrice = ref(0)
 
 const searchQuery = ref('')
 
-const onChangeInput = (e) => {
-    searchQuery.value = e
-}
+const items = ref([])
+const cartItems = ref([])
+const favItems = ref([])
+
+const isCartOpen = ref(false)
+const isInputInFocus = ref(false)
+const isFavOpen = ref(false)
 
 onMounted(async () => {
     try {
@@ -51,19 +55,31 @@ watch(searchQuery, async () => {
     }
 })
 
-watch(cartItems, () => {
-    console.log(cartItems.value)
-})
-
-const isCartOpen = ref(false)
-const isInputInFocus = ref(false)
+const onChangeInput = (e) => {
+    searchQuery.value = e
+}
 
 const setCartHandler = () => {
     isCartOpen.value = !isCartOpen.value
 }
 
+const setFavHandler = () => {
+    isFavOpen.value = !isFavOpen.value
+}
+
 const setFocus = () => {
     isInputInFocus.value = !isInputInFocus.value
+}
+
+const addToFavorite = async (item) => {
+    item.isFavorite = !item.isFavorite
+
+    if (favItems.value.includes(item)) {
+        favItems.value = favItems.value.filter((i) => i.id != item.id)
+    }
+    if (!favItems.value.includes(item) && item.isFavorite) {
+        favItems.value.push(item)
+    }
 }
 
 const addtoCart = async (item) => {
@@ -87,18 +103,37 @@ const deleteCartItem = async (item) => {
 </script>
 <template>
     <Wrapper>
-        <Header :setCartHandler="setCartHandler" :totalPrice="totalPrice" />
-        <div
-            class="md:mt-12 flex md:flex-row flex-col md:justify-between md:items-center"
-        >
-            <h2 class="text-4xl font-bold mt-4 md:mt-0">Все Кросcовки</h2>
-            <SearchBar
-                :isInputInFocus="isInputInFocus"
-                :setFocus="setFocus"
-                :onChangeInput="onChangeInput"
+        <Header
+            :setCartHandler="setCartHandler"
+            :setFavHandler="setFavHandler"
+            :totalPrice="totalPrice"
+        />
+        <div v-if="!isFavOpen">
+            <HeaderImage />
+            <div
+                class="md:mt-12 flex md:flex-row flex-col md:justify-between md:items-center"
+            >
+                <h2 class="text-4xl font-bold mt-4 md:mt-0">Все Кросcовки</h2>
+                <SearchBar
+                    :isInputInFocus="isInputInFocus"
+                    :setFocus="setFocus"
+                    :onChangeInput="onChangeInput"
+                />
+            </div>
+
+            <SneakersList
+                :items="items"
+                :addtoCart="addtoCart"
+                :addToFavorite="addToFavorite"
             />
         </div>
-        <SneakersList :items="items" :addtoCart="addtoCart" />
+        <Favorites
+            v-if="isFavOpen"
+            :favItems="favItems"
+            :addtoCart="addtoCart"
+            :setFavHandler="setFavHandler"
+            :addToFavorite="addToFavorite"
+        ></Favorites>
     </Wrapper>
     <Cart
         v-if="isCartOpen"

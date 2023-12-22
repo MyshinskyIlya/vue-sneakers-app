@@ -3,7 +3,7 @@ const { imageUrl, title, price, deleteCartItem, id, count } = defineProps({
     item: Object,
     imageUrl: String,
     title: String,
-    price: String,
+    price: Number,
     isFavorite: Boolean,
     isAdded: Boolean,
     onClickFavorite: Function,

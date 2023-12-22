@@ -1,9 +1,10 @@
 <script setup>
 import SneakersCard from './SneakersCard/SneakersCard.vue'
 
-const { items, addtoCart } = defineProps({
+const { items, addtoCart, addToFavorite } = defineProps({
     items: Array,
-    addtoCart: Function
+    addtoCart: Function,
+    addToFavorite: Function
 })
 </script>
 
@@ -11,15 +12,16 @@ const { items, addtoCart } = defineProps({
     <section class="md:mt-8">
         <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 space-y-4 md:space-y-0">
             <SneakersCard
-                v-for="(item, index) in items"
+                v-for="item in items"
                 :key="item.id"
                 :imageUrl="item.imageUrl"
                 :title="item.title"
-                :price="item.price + ' RUB'"
+                :price="item.price"
                 :isAdded="false"
                 :isFavorite="item.isFavorite"
                 :item="item"
                 :addtoCart="addtoCart"
+                :addToFavorite="addToFavorite"
             />
         </div>
     </section>
