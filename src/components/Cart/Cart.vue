@@ -1,5 +1,6 @@
 <script setup>
 import CartSneakersList from './CartSneakersList/CartSneakersList.vue'
+import CartEmpty from './CartEmpty/CartEmpty.vue'
 
 const { setCartHandler, cartItems, totalPrice, deleteCartItem } = defineProps({
     setCartHandler: Function,
@@ -40,21 +41,24 @@ const { setCartHandler, cartItems, totalPrice, deleteCartItem } = defineProps({
 
             <h2 class="text-2xl font-bold p-8">Корзина</h2>
         </div>
-        <CartSneakersList :cartItems="cartItems" :deleteCartItem="deleteCartItem" />
-        <div class="flex flex-col gap-4 border-t font-medium border-slate-200 p-10">
-            <div class="flex justify-between">
-                <p class="text-6">Итого:</p>
-                <p class="font-bold">{{ totalPrice }} RUB</p>
+        <CartEmpty v-if="cartItems.length == 0" :setCartHandler="setCartHandler" />
+        <div v-if="cartItems.length > 0" class="flex flex-col h-full">
+            <CartSneakersList :cartItems="cartItems" :deleteCartItem="deleteCartItem" />
+            <div class="flex flex-col gap-4 border-t font-medium border-slate-200 p-10">
+                <div class="flex justify-between">
+                    <p class="text-6">Итого:</p>
+                    <p class="font-bold">{{ totalPrice }} RUB</p>
+                </div>
+                <div class="flex justify-between mb-1">
+                    <p class="text-6">Налог 5%:</p>
+                    <p class="font-bold">{{ ((totalPrice * 5) / 100).toFixed(0) }} RUB</p>
+                </div>
+                <button
+                    class="bg-lime-400 hover:bg-lime-500 active:bg-lime-600 disabled:bg-slate-300 disabled:cursor-auto transition-all duration-400 rounded-2xl px-4 py-3 font-bold text-white cursor-pointer w-full mt-auto"
+                >
+                    Оформить Заказ
+                </button>
             </div>
-            <div class="flex justify-between mb-1">
-                <p class="text-6">Налог 5%:</p>
-                <p class="font-bold">{{ ((totalPrice * 5) / 100).toFixed(0) }} RUB</p>
-            </div>
-            <button
-                class="bg-lime-400 hover:bg-lime-500 active:bg-lime-600 disabled:bg-slate-300 disabled:cursor-auto transition-all duration-400 rounded-2xl px-4 py-3 font-bold text-white cursor-pointer w-full mt-auto"
-            >
-                Оформить Заказ
-            </button>
         </div>
     </div>
 </template>
