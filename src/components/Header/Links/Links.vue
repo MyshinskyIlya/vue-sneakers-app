@@ -17,15 +17,13 @@ const ItemsCountFn = () => {
 watch(cartItems, async () => {
     ItemsCountFn()
 })
-
-console.log(itemsCount.value)
 </script>
 
 <template>
     <nav class="hidden lg:block cursor-pointer">
         <ul class="flex gap-6 text-6 text-sm font-light">
             <li @click="setCartHandler" class="flex items-center gap-2 hover:text-black">
-                <img src="/cart.svg" alt="" />
+                <img src="/cart.svg" alt="Cart Icon" />
                 <span
                     :class="
                         totalPrice > 0
