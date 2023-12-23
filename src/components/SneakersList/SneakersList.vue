@@ -1,10 +1,8 @@
 <script setup>
 import SneakersCard from './SneakersCard/SneakersCard.vue'
 
-const { items, addtoCart, addToFavorite } = defineProps({
-    items: Array,
-    addtoCart: Function,
-    addToFavorite: Function
+const { items } = defineProps({
+    items: Array
 })
 </script>
 
@@ -20,8 +18,6 @@ const { items, addtoCart, addToFavorite } = defineProps({
                 :isAdded="false"
                 :isFavorite="item.isFavorite"
                 :item="item"
-                :addtoCart="addtoCart"
-                :addToFavorite="addToFavorite"
             />
         </div>
     </section>

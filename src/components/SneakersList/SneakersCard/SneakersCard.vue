@@ -1,18 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 
-const { imageUrl, title, price, isFavorite, item, addtoCart, addToFavorite } =
-    defineProps({
-        imageUrl: String,
-        title: String,
-        price: Number,
-        isFavorite: Boolean,
-        isAdded: Boolean,
-        onClickFavorite: Function,
-        item: Object,
-        addtoCart: Function,
-        addToFavorite: Function
-    })
+const { imageUrl, title, price, isFavorite, item } = defineProps({
+    imageUrl: String,
+    title: String,
+    price: Number,
+    isFavorite: Boolean,
+    isAdded: Boolean,
+    onClickFavorite: Function,
+    item: Object
+})
+
+const addToFavorite = inject('addToFavorite')
+const addtoCart = inject('addtoCart')
+
 const timer = ref(false)
 function addTimer() {
     timer.value = true

@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, watch, ref } from 'vue'
+import { onMounted, watch, ref, provide } from 'vue'
 import axios from 'axios'
 import Header from './components/Header/Header.vue'
 import Wrapper from './components/Wrapper.vue'
@@ -19,7 +19,6 @@ const cartItems = ref([])
 const favItems = ref([])
 
 const isCartOpen = ref(false)
-const isInputInFocus = ref(false)
 const isFavOpen = ref(false)
 
 onMounted(async () => {
@@ -67,10 +66,6 @@ const setFavHandler = () => {
     isFavOpen.value = !isFavOpen.value
 }
 
-const setFocus = () => {
-    isInputInFocus.value = !isInputInFocus.value
-}
-
 const addToFavorite = async (item) => {
     item.isFavorite = !item.isFavorite
 
@@ -100,6 +95,9 @@ const deleteCartItem = async (item) => {
 
     totalPrice.value -= item.price
 }
+
+provide('addToFavorite', addToFavorite)
+provide('addtoCart', addtoCart)
 </script>
 <template>
     <Wrapper>
@@ -115,18 +113,10 @@ const deleteCartItem = async (item) => {
                 class="md:mt-12 flex md:flex-row flex-col md:justify-between md:items-center"
             >
                 <h2 class="text-4xl font-bold mt-4 md:mt-0">Все Кросcовки</h2>
-                <SearchBar
-                    :isInputInFocus="isInputInFocus"
-                    :setFocus="setFocus"
-                    :onChangeInput="onChangeInput"
-                />
+                <SearchBar :onChangeInput="onChangeInput" />
             </div>
 
-            <SneakersList
-                :items="items"
-                :addtoCart="addtoCart"
-                :addToFavorite="addToFavorite"
-            />
+            <SneakersList :items="items" />
         </div>
         <Favorites
             v-if="isFavOpen"
