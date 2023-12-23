@@ -107,6 +107,7 @@ const deleteCartItem = async (item) => {
             :setCartHandler="setCartHandler"
             :setFavHandler="setFavHandler"
             :totalPrice="totalPrice"
+            :cartItems="cartItems"
         />
         <div v-if="!isFavOpen">
             <HeaderImage />

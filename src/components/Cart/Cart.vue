@@ -1,6 +1,8 @@
 <script setup>
 import CartSneakersList from './CartSneakersList/CartSneakersList.vue'
 import CartEmpty from './CartEmpty/CartEmpty.vue'
+import CartSuccess from './CartSuccess/CartSuccess.vue'
+import { ref } from 'vue'
 
 const { setCartHandler, cartItems, totalPrice, deleteCartItem } = defineProps({
     setCartHandler: Function,
@@ -8,6 +10,11 @@ const { setCartHandler, cartItems, totalPrice, deleteCartItem } = defineProps({
     totalPrice: Number,
     deleteCartItem: Function
 })
+
+const isSubmit = ref(false)
+const sumbitHandler = () => {
+    isSubmit.value = true
+}
 </script>
 
 <template>
@@ -43,8 +50,15 @@ const { setCartHandler, cartItems, totalPrice, deleteCartItem } = defineProps({
         </div>
         <CartEmpty v-if="cartItems.length == 0" :setCartHandler="setCartHandler" />
         <div v-if="cartItems.length > 0" class="flex flex-col h-full">
-            <CartSneakersList :cartItems="cartItems" :deleteCartItem="deleteCartItem" />
-            <div class="flex flex-col gap-4 border-t font-medium border-slate-200 p-10">
+            <CartSneakersList
+                :cartItems="cartItems"
+                :deleteCartItem="deleteCartItem"
+                v-if="!isSubmit"
+            />
+            <div
+                class="flex flex-col gap-4 border-t font-medium border-slate-200 p-10"
+                v-if="!isSubmit"
+            >
                 <div class="flex justify-between">
                     <p class="text-6">Итого:</p>
                     <p class="font-bold">{{ totalPrice }} RUB</p>
@@ -54,11 +68,13 @@ const { setCartHandler, cartItems, totalPrice, deleteCartItem } = defineProps({
                     <p class="font-bold">{{ ((totalPrice * 5) / 100).toFixed(0) }} RUB</p>
                 </div>
                 <button
+                    @click="sumbitHandler"
                     class="bg-lime-400 hover:bg-lime-500 active:bg-lime-600 disabled:bg-slate-300 disabled:cursor-auto transition-all duration-400 rounded-2xl px-4 py-3 font-bold text-white cursor-pointer w-full mt-auto"
                 >
                     Оформить Заказ
                 </button>
             </div>
+            <CartSuccess v-if="isSubmit" :setCartHandler="setCartHandler" />
         </div>
     </div>
 </template>
