@@ -39,7 +39,7 @@ function addTimer() {
             />
             <img :src="imageUrl" alt="Sneaker Image" class="object-contain" />
         </div>
-        <p class="capitalize trxt-md font-semibold text-lg w-full mt-2">{{ title }}</p>
+        <p class="capitalize text-md font-semibold text-lg w-full mt-2">{{ title }}</p>
         <div class="flex items-center justify-between w-full mt-2 gap-2">
             <div>
                 <p class="text-slate-300">ЦЕНА:</p>

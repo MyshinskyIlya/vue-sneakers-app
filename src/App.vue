@@ -11,9 +11,7 @@ import Sneakers from './assets/Sneakers'
 import HeaderImage from './components/Header/HeaderImage/HeaderImage.vue'
 
 const totalPrice = ref(0)
-
 const searchQuery = ref('')
-
 const items = ref([])
 const cartItems = ref([])
 const favItems = ref([])
@@ -99,6 +97,7 @@ const deleteCartItem = async (item) => {
 provide('addToFavorite', addToFavorite)
 provide('addtoCart', addtoCart)
 </script>
+
 <template>
     <Wrapper>
         <Header
