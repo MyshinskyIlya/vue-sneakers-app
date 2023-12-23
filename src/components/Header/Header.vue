@@ -1,7 +1,6 @@
 <script setup>
 import Logo from './Logo/Logo.vue'
 import Links from './Links/Links.vue'
-import HeaderImage from './HeaderImage/HeaderImage.vue'
 
 const { setCartHandler, totalPrice, setFavHandler, cartItems } = defineProps({
     setCartHandler: Function,
