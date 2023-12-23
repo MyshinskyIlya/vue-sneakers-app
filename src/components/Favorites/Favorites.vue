@@ -1,5 +1,6 @@
 <script setup>
 import SneakersList from '../SneakersList/SneakersList.vue'
+import FavoritesEmpty from './FavoritesEmpty/FavoritesEmpty.vue'
 
 const { favItems, addtoCart, addToFavorite } = defineProps({
     favItems: Array,
@@ -31,7 +32,9 @@ const { favItems, addtoCart, addToFavorite } = defineProps({
 
             <h2 class="text-2xl font-bold p-8">Закладки</h2>
         </div>
+        <FavoritesEmpty v-if="favItems.length < 1" />
         <SneakersList
+            v-if="favItems"
             :items="favItems"
             :addtoCart="addtoCart"
             :addToFavorite="addToFavorite"
