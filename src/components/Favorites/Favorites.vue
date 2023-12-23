@@ -32,7 +32,7 @@ const { favItems, addtoCart, addToFavorite } = defineProps({
 
             <h2 class="text-2xl font-bold p-8">Закладки</h2>
         </div>
-        <FavoritesEmpty v-if="favItems.length < 1" />
+        <FavoritesEmpty v-if="favItems.length < 1" :setFavHandler="setFavHandler" />
         <SneakersList
             v-if="favItems"
             :items="favItems"

@@ -1,6 +1,6 @@
 <script setup>
-const { setCartHandler } = defineProps({
-    setCartHandler: Function
+const { setFavHandler } = defineProps({
+    setFavHandler: Function
 })
 
 const isIcon = 'https://em-content.zobj.net/source/apple/354/melting-face_1fae0.png'
@@ -23,7 +23,7 @@ const isIcon = 'https://em-content.zobj.net/source/apple/354/melting-face_1fae0.
         <p class="text-6 text-center font-light">Вы ничего не добавляли в закладки</p>
         <button
             class="bg-lime-400 hover:bg-lime-500 active:bg-lime-600 disabled:bg-slate-300 disabled:cursor-auto transition-all duration-400 rounded-2xl px-4 py-3 font-bold text-white cursor-pointer mt-12"
-            @click="setCartHandler"
+            @click="setFavHandler"
         >
             Вернуться назад
         </button>
