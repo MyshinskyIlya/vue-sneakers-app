@@ -2,11 +2,12 @@
 import Logo from './Logo/Logo.vue'
 import Links from './Links/Links.vue'
 
-const { setCartHandler, totalPrice, setFavHandler, cartItems } = defineProps({
+const { setCartHandler, totalPrice, setFavHandler, cartItems, itemsCount } = defineProps({
     setCartHandler: Function,
     totalPrice: Number,
     setFavHandler: Function,
-    cartItems: Array
+    cartItems: Array,
+    itemsCount: Number
 })
 </script>
 
@@ -20,6 +21,7 @@ const { setCartHandler, totalPrice, setFavHandler, cartItems } = defineProps({
             :totalPrice="totalPrice"
             :setFavHandler="setFavHandler"
             :cartItems="cartItems"
+            :itemsCount="itemsCount"
         />
     </header>
 </template>

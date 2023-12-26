@@ -1,21 +1,12 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue'
 
-const { setCartHandler, totalPrice, setFavHandler, cartItems } = defineProps({
+const { setCartHandler, totalPrice, setFavHandler, cartItems, itemsCount } = defineProps({
     setCartHandler: Function,
     totalPrice: Number,
     setFavHandler: Function,
-    cartItems: Array
-})
-
-const itemsCount = ref(0)
-
-const ItemsCountFn = () => {
-    itemsCount.value = cartItems.reduce((acc, item) => acc + item.count, 0)
-}
-
-watch(cartItems, async () => {
-    ItemsCountFn()
+    cartItems: Array,
+    itemsCount: Number
 })
 </script>
 

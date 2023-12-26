@@ -4,17 +4,15 @@ import CartEmpty from './CartEmpty/CartEmpty.vue'
 import CartSuccess from './CartSuccess/CartSuccess.vue'
 import { ref } from 'vue'
 
-const { setCartHandler, cartItems, totalPrice, deleteCartItem } = defineProps({
-    setCartHandler: Function,
-    cartItems: Array,
-    totalPrice: Number,
-    deleteCartItem: Function
-})
-
-const isSubmit = ref(false)
-const sumbitHandler = () => {
-    isSubmit.value = true
-}
+const { setCartHandler, cartItems, totalPrice, deleteCartItem, isSubmit, sumbitHandler } =
+    defineProps({
+        setCartHandler: Function,
+        cartItems: Array,
+        totalPrice: Number,
+        deleteCartItem: Function,
+        isSubmit: Boolean,
+        sumbitHandler: Function
+    })
 </script>
 
 <template>
@@ -48,7 +46,10 @@ const sumbitHandler = () => {
 
             <h2 class="text-2xl font-bold p-8">Корзина</h2>
         </div>
-        <CartEmpty v-if="cartItems.length == 0" :setCartHandler="setCartHandler" />
+        <CartEmpty
+            v-if="cartItems.length == 0 && !isSubmit"
+            :setCartHandler="setCartHandler"
+        />
         <div v-if="cartItems.length > 0" class="flex flex-col h-full">
             <CartSneakersList
                 :cartItems="cartItems"
@@ -74,7 +75,7 @@ const sumbitHandler = () => {
                     Оформить Заказ
                 </button>
             </div>
-            <CartSuccess v-if="isSubmit" :setCartHandler="setCartHandler" />
         </div>
+        <CartSuccess v-if="isSubmit" :setCartHandler="setCartHandler" />
     </div>
 </template>

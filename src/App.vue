@@ -18,6 +18,9 @@ const favItems = ref([])
 
 const isCartOpen = ref(false)
 const isFavOpen = ref(false)
+const isSubmit = ref(false)
+
+const itemsCount = ref(0)
 
 onMounted(async () => {
     try {
@@ -58,6 +61,7 @@ const onChangeInput = (e) => {
 
 const setCartHandler = () => {
     isCartOpen.value = !isCartOpen.value
+    isSubmit.value = false
 }
 
 const setFavHandler = () => {
@@ -79,6 +83,7 @@ const addtoCart = async (item) => {
     item.isAdded = !item.isAdded
     item.count++
     totalPrice.value += item.price
+    itemsCount.value++
 
     if (!cartItems.value.includes(item)) {
         cartItems.value.push(item)
@@ -90,8 +95,22 @@ const deleteCartItem = async (item) => {
         cartItems.value = cartItems.value.filter((i) => i.id != item.id)
     }
     item.count--
+    itemsCount.value--
 
     totalPrice.value -= item.price
+}
+
+const sumbitHandler = () => {
+    isSubmit.value = true
+
+    cartItems.value = []
+    totalPrice.value = 0
+    items.value = items.value.map((obj) => ({
+        ...obj,
+        isFavorite: false,
+        isAdded: false,
+        count: 0
+    }))
 }
 
 provide('addToFavorite', addToFavorite)
@@ -105,6 +124,7 @@ provide('addtoCart', addtoCart)
             :setFavHandler="setFavHandler"
             :totalPrice="totalPrice"
             :cartItems="cartItems"
+            :itemsCount="itemsCount"
         />
         <div v-if="!isFavOpen">
             <HeaderImage />
@@ -131,5 +151,7 @@ provide('addtoCart', addtoCart)
         :cartItems="cartItems"
         :totalPrice="totalPrice"
         :deleteCartItem="deleteCartItem"
+        :isSubmit="isSubmit"
+        :sumbitHandler="sumbitHandler"
     />
 </template>
