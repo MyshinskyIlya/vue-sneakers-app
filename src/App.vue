@@ -9,6 +9,7 @@ import Favorites from './components/Favorites/Favorites.vue'
 import SearchBar from './components/SearchBar/SearchBar.vue'
 import Sneakers from './assets/Sneakers'
 import HeaderImage from './components/Header/HeaderImage/HeaderImage.vue'
+import debounce from 'lodash.debounce'
 
 const totalPrice = ref(0)
 const searchQuery = ref('')
@@ -55,9 +56,9 @@ watch(searchQuery, async () => {
     }
 })
 
-const onChangeInput = (e) => {
+const onChangeInput = debounce((e) => {
     searchQuery.value = e
-}
+}, 300)
 
 const setCartHandler = () => {
     isCartOpen.value = !isCartOpen.value
