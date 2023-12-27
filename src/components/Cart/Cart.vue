@@ -21,7 +21,7 @@ const { setCartHandler, cartItems, totalPrice, deleteCartItem, isSubmit, sumbitH
         class="fixed top-0 left-0 w-full h-screen bg-black opacity-50"
     ></div>
     <div
-        class="fixed top-0 right-0 md:w-1/3 w-full h-full bg-white overflow-y-auto flex flex-col z-10"
+        class="fixed top-0 right-0 md:w-1/3 w-full h-full bg-white overflow-y-auto flex flex-col z-10 transition-opacity duration-300"
     >
         <div
             class="flex items-center ml-10 border-b border-slate-200 cursor-pointer"

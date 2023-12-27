@@ -8,7 +8,7 @@ const { cardItems, deleteCartItem } = defineProps({
 </script>
 
 <template>
-    <div class="p-10 flex flex-col gap-6 flex-1 w-full">
+    <div class="p-10 flex flex-col gap-6 flex-1 w-full" v-auto-animate>
         <CartSneakersCard
             v-for="item in cartItems"
             :item="item"

@@ -8,7 +8,10 @@ const { items } = defineProps({
 
 <template>
     <section class="md:mt-8">
-        <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 space-y-4 md:space-y-0">
+        <div
+            class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 space-y-4 md:space-y-0"
+            v-auto-animate
+        >
             <SneakersCard
                 v-for="item in items"
                 :key="item.id"
